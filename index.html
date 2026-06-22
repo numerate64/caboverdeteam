@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A fullscreen kiosk celebrating Cabo Verde's 2026 FIFA World Cup squad."
+    />
+    <meta name="theme-color" content="#071f5c" />
+    <title>Cabo Verde — World Cup 2026 Squad</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="kiosk" aria-live="polite">
+      <div class="flag-lines" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <header class="topbar">
+        <a class="identity" href="./" aria-label="Cabo Verde squad home">
+          <span class="identity-mark" aria-hidden="true">
+            <span class="star-ring">★★★★★★★★★★</span>
+          </span>
+          <span>
+            <strong>CABO VERDE</strong>
+            <small>WORLD CUP 2026 · TUBARÕES AZUIS</small>
+          </span>
+        </a>
+
+        <nav class="actions" aria-label="Kiosk controls">
+          <button class="icon-button" id="rosterButton" type="button">
+            <span aria-hidden="true">☷</span>
+            <span>Roster</span>
+          </button>
+          <button class="icon-button" id="settingsButton" type="button">
+            <span aria-hidden="true">⚙</span>
+            <span>Timing</span>
+          </button>
+          <button class="icon-button" id="fullscreenButton" type="button">
+            <span aria-hidden="true">⛶</span>
+            <span>Fullscreen</span>
+          </button>
+        </nav>
+      </header>
+
+      <section class="stage">
+        <div class="photo-field" aria-hidden="true">
+          <div class="photo-glow"></div>
+          <img id="playerBackdrop" alt="" />
+          <div class="photo-disc"></div>
+          <img id="playerPhoto" alt="" />
+          <span class="shirt-number" id="shirtNumber"></span>
+        </div>
+
+        <article class="player-copy">
+          <div class="eyebrow">
+            <span class="position-dot"></span>
+            <span id="positionGroup"></span>
+          </div>
+          <h1 id="playerName"></h1>
+          <p class="specific-position" id="specificPosition"></p>
+          <div class="club">
+            <span>CLUB</span>
+            <strong id="clubName"></strong>
+          </div>
+        </article>
+      </section>
+
+      <footer class="kiosk-footer">
+        <button class="step-button" id="previousButton" type="button" aria-label="Previous player">
+          ←
+        </button>
+
+        <div class="rotation-status">
+          <div class="counter">
+            <strong id="currentNumber">01</strong>
+            <span>/</span>
+            <span id="totalPlayers">26</span>
+          </div>
+          <div class="progress-track" aria-hidden="true">
+            <span id="progressBar"></span>
+          </div>
+          <p>
+            Next player in <strong id="intervalLabel">3 seconds</strong>
+            <button id="pauseButton" type="button">Pause</button>
+          </p>
+        </div>
+
+        <button class="step-button" id="nextButton" type="button" aria-label="Next player">
+          →
+        </button>
+      </footer>
+    </main>
+
+    <dialog class="panel roster-panel" id="rosterDialog">
+      <div class="panel-header">
+        <div>
+          <span class="panel-kicker">THE BLUE SHARKS</span>
+          <h2>2026 World Cup Squad</h2>
+        </div>
+        <button class="close-button" data-close="rosterDialog" type="button" aria-label="Close roster">×</button>
+      </div>
+      <div class="roster-grid" id="rosterGrid"></div>
+      <p class="source-note">
+        Squad: Federação Cabo-verdiana de Futebol · Player details and portraits: FotMob
+      </p>
+    </dialog>
+
+    <dialog class="panel settings-panel" id="settingsDialog">
+      <div class="panel-header">
+        <div>
+          <span class="panel-kicker">KIOSK SETTINGS</span>
+          <h2>Rotation timing</h2>
+        </div>
+        <button class="close-button" data-close="settingsDialog" type="button" aria-label="Close settings">×</button>
+      </div>
+      <label class="interval-control" for="intervalInput">
+        <span>Seconds per player</span>
+        <strong id="intervalValue">3</strong>
+      </label>
+      <input id="intervalInput" type="range" min="1" max="15" step="1" value="3" />
+      <p class="setting-help">
+        The default is 3 seconds. Your choice is saved on this device. You can also use
+        <code>?interval=5</code> in the page URL.
+      </p>
+      <div class="settings-actions">
+        <button class="secondary-button" id="resetButton" type="button">Reset to 3 seconds</button>
+        <button class="primary-button" id="saveButton" type="button">Save timing</button>
+      </div>
+    </dialog>
+
+    <noscript>
+      <div class="noscript">JavaScript is required to rotate through the squad.</div>
+    </noscript>
+  </body>
+</html>
