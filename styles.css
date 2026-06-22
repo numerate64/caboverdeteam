@@ -118,20 +118,9 @@ button {
   width: 3.65rem;
   height: 3.65rem;
   place-items: center;
-  border: 2px solid rgba(255, 255, 255, 0.85);
-  border-radius: 50%;
-  background: var(--blue);
-  box-shadow: inset 0 0 0 0.28rem var(--deep-blue);
-}
-
-.star-ring {
-  width: 2.6rem;
-  color: var(--yellow);
-  font-size: 0.55rem;
-  line-height: 0.75rem;
-  letter-spacing: 0.06rem;
-  text-align: center;
-  text-wrap: balance;
+  font-size: 3rem;
+  line-height: 1;
+  filter: drop-shadow(0 0.2rem 0.35rem rgba(0, 0, 0, 0.28));
 }
 
 .identity strong,
